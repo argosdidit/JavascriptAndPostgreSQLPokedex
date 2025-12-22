@@ -1,0 +1,113 @@
+<?php
+// PostgreSQL用の接続情報（test.phpと同じにする！）
+$host = '127.0.0.1';
+$dbname = 'POKDEDB';
+$user = 'postgres';
+$pass = 'postgres';
+
+try {
+  $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  // ↓↓↓ ここからSQL実行（この部分はそのままでOK！）
+
+  $pokeId = isset($_GET['id']) ? (int)$_GET['id'] : 1;
+  $isNormal = isset($_GET['normal']) && $_GET['normal'] == '1';
+  $isShiny = isset($_GET['shiny']) && $_GET['shiny'] == '1';
+
+
+  $sqlPokeTarget = "
+  SELECT
+  Pokedex.PokeId,
+  Pokedex.Name,
+  Type1.Type AS Type1,
+  Type2.Type AS Type2,
+  Region.Region AS Region,
+  Gen.Gen AS Gen,
+  Image.PathNormal AS PathNormal,
+  Image.PathShiny AS PathShiny
+  FROM TblPokedex AS Pokedex
+  LEFT OUTER JOIN TblType AS Type1 ON Pokedex.Type1Id = Type1.TypeId
+  LEFT OUTER JOIN TblType AS Type2 ON Pokedex.Type2Id = Type2.TypeId
+  INNER JOIN TblRegion AS Region ON Pokedex.RegionId = Region.RegionId
+  INNER JOIN TblGen AS Gen ON Pokedex.GenId = Gen.GenId
+  INNER JOIN TblImage AS Image ON Pokedex.PokeId = Image.PokeId
+  WHERE Pokedex.PokeId = :pokeid
+  LIMIT 1
+  ";
+  
+  $stmtPokeTarget = $pdo->prepare($sqlPokeTarget);
+  $stmtPokeTarget->bindValue(':pokeid', $pokeId, PDO::PARAM_INT);
+  $stmtPokeTarget->execute();
+  $PokeTarget = $stmtPokeTarget->fetch(PDO::FETCH_ASSOC);
+
+  $sqlPokeNormalList = "
+  SELECT
+  tblImage.Pokeid,
+  tblImage.PathNormal
+  FROM
+  tblImage
+  ";
+  $stmtPokeNormalList = $pdo->query($sqlPokeNormalList);
+  $PokeNormalList = $stmtPokeNormalList->fetchAll(PDO::FETCH_ASSOC);
+
+  $sqlPokeShinyList = "
+  SELECT
+  tblImage.Pokeid,
+  tblImage.PathShiny
+  FROM
+  tblImage
+  ";
+  $stmtPokeShinyList = $pdo->query($sqlPokeShinyList);
+  $PokeShinyList = $stmtPokeShinyList->fetchAll(PDO::FETCH_ASSOC);
+}
+catch (PDOException $e)
+{
+  echo "接続エラー: " . $e->getMessage();
+  exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ポケモン図鑑</title>
+  <link rel="stylesheet" href="pokedex.css">
+</head>
+<body>
+  <div class="pokedex">
+    <?php if ($PokeTarget): ?>
+      <img src="<?= htmlspecialchars($PokeTarget['pathnormal']) ?>" alt="<?= htmlspecialchars($PokeTarget['name']) ?>">
+      <div class="info">
+        <h2>#<?= htmlspecialchars($PokeTarget['pokeid']) ?> <?= htmlspecialchars($PokeTarget['name']) ?></h2>
+        <div>
+          <span class="type"><?= htmlspecialchars($PokeTarget['type1']) ?></span>
+          <?php if (!empty($PokeTarget['type2'])): ?>
+            <span class="type"><?= htmlspecialchars($PokeTarget['type2']) ?></span>
+          <?php endif; ?>
+        </div>
+        <p>地方：<?= htmlspecialchars($PokeTarget['region']) ?></p>
+        <p>世代：<?= htmlspecialchars($PokeTarget['gen']) ?></p>
+      </div>
+    <?php else: ?>
+      <p>ポケモンが見つかりませんでした。</p>
+    <?php endif; ?>
+    <div class="nav-buttons">
+      <a href="?id=<?= max(1, $pokeId - 1) ?>">«</a>
+      <button id="toggleShiny">通常 / 色違い</button>
+      <a href="?id=<?= $pokeId + 1 ?>">»</a>
+    </div>
+  </div>
+  <div class="thumbnail-bar">
+    <?php foreach ($PokeNormalList as $poke): ?>
+      <a href="?id=<?= $poke['pokeid'] ?>&normal=<?= $isNormal ? 1 : 0 ?>">
+        <img
+        src="<?= htmlspecialchars($poke['pathnormal']) ?>"
+        alt="No.<?= $poke['pokeid'] ?>"
+        class="thumbnail <?= ($poke['pokeid'] == $pokeId) ? 'active' : '' ?>"
+        >
+      </a>
+    <?php endforeach; ?>
+  </div>
+</body>
+</html>

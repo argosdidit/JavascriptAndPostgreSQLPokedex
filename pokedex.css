@@ -1,0 +1,81 @@
+body {
+    font-family: sans-serif;
+    background-color: #f2f2f2;
+    padding: 2rem;
+}
+
+.pokedex {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.pokedex img {
+    width: 150px;
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+.info {
+    text-align: center;
+}
+
+.type {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    margin: 0 0.2rem;
+    border-radius: 5px;
+    background-color: #ccc;
+    font-weight: bold;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.nav-buttons a {
+  padding: 0.5rem 1rem;
+  background-color: #eee;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.nav-buttons a:hover {
+  background-color: #ddd;
+}
+
+/*リスト関係*/
+.thumbnail-bar {
+  display: flex;
+  overflow-x: auto;
+  padding: 1rem;
+  gap: 0.5rem;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+  margin-top: 2rem;
+}
+
+.thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.thumbnail:hover {
+  border-color: #888;
+  cursor: pointer;
+}
+
+.thumbnail.active {
+  border-color: #f00;
+}

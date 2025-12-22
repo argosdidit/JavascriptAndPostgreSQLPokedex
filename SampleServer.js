@@ -1,0 +1,44 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const mysql = require('mysql');
+const cors = require('cors');
+const app = express();
+app.use(bodyParser.json());
+
+const port = 3001;
+
+app.use(cors());
+
+const connection = mysql.createConnection({
+  host: '127.0.0.1',
+  user: 'root',
+  password: 'root',
+  database: 'PokeDB'
+});
+
+
+app.get('/api/poke', (req, res) => {
+  const AUTONUM = req.query.AUTONUM;
+  const query =
+  `
+  SELECT
+  *
+  FROM
+  POKEDB.Pokedex
+  WHERE
+  PokeID = ?
+  `
+  connection.query(query, [AUTONUM], (err, results) => {
+    if(err) throw err;
+    if(results.length === 0)
+    {
+      res.status(404).json({ message: 'Pokemon is not found'});
+    }
+    else
+    {
+      res.json(results[0]);
+    }
+  });
+});
+
+
