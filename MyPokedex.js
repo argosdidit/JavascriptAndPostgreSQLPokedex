@@ -374,3 +374,44 @@ const PokeProject = (() => {
 window.addEventListener('load', function(){
   PokeProject();
 });
+//メソッド全体図
+
+//init
+//makeFieldTitle
+//makeFieldControlButtons
+//	[prevPoke]
+//	[nextPoke]
+//	[switchImage]
+
+//getMinNo(async)
+//getMaxNo(async)
+//getPokeData(async)
+//	[initFieldPokeData]
+//	[makeFieldPokeImage]
+//	[makeFieldPokeTitle]
+//	[makeFieldPokeType]
+//	[makeFieldPokeInfo]
+
+//initFieldPokeData
+//makeFieldPokeImage
+//makeFieldPokeTitle
+//makeFieldPokeType
+//makeFieldPokeInfo
+
+//prevPoke
+//nextPoke
+//switchImage
+//	[getPokeData]
+//	[makeFieldDisplayPokeList]
+
+//makeFieldDisplayPokeList(async)
+
+
+//active
+//	[init]
+//	[makeFieldPageTitle]
+//	[makeFieldControlButtons]
+//	[getMinNo]
+//	[getMaxNo]
+//	[getPokeData]
+//	[makeFieldDisplayPokeList]
