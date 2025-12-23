@@ -13,11 +13,11 @@ async function runSQL() {
     console.log("DB接続成功");
 
     // 既存ビューを安全に削除（任意）
-    await client.query(`DROP VIEW IF EXISTS TblViewDex;`);
+    await client.query(`DROP VIEW IF EXISTS ViewPokeDex;`);
 
     // ビュー作成
     await client.query(`
-      CREATE VIEW TblViewDex AS
+      CREATE VIEW ViewPokeDex AS
       SELECT
         Pokedex.PokeId,
         Pokedex.PokeName,
@@ -42,7 +42,7 @@ async function runSQL() {
       ORDER BY Pokedex.PokeId;
     `);
 
-    console.log("ビュー TblViewDex の作成が完了しました！");
+    console.log("ビュー ViewPokeDex の作成が完了しました！");
   } catch (err) {
     console.error("SQL実行エラー:", err);
   } finally {
