@@ -36,7 +36,6 @@ const PokeProject = (() => {
   htmlPokeType,
   htmlPokeInfo,
   htmlControlButtons,
-  htmlDisplayPokeList,
 
   //js上で必要となり得る要素
   func,
