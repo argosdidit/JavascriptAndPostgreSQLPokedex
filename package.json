@@ -4,6 +4,13 @@
   "description": "",
   "main": "htmlPokedex.js",
   "scripts": {
+    "start": "node htmlPokedex.js",
+
+    "command-sql01": "node commandSQL01.js",
+    "command-sql02": "node commandSQL02.js",
+    "command-sql03": "node commandSQL03.js",
+    "command-sql04": "node commandSQL04.js",
+
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
