@@ -4,7 +4,7 @@
   "description": "",
   "main": "htmlPokedex.js",
   "scripts": {
-    "start": "node htmlPokedex.js",
+    "start": "node commandSQL01.js",
 
     "command-sql01": "node commandSQL01.js",
     "command-sql02": "node commandSQL02.js",
