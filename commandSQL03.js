@@ -275,7 +275,7 @@ async function runSQL() {
       (248, 'image/normal/248.png', 'image/shiny/248.png'),
       (249, 'image/normal/249.png', 'image/shiny/249.png'),
       (250, 'image/normal/250.png', 'image/shiny/250.png'),
-      (251, 'image/normal/251.png', 'image/shiny/251.png'),
+      (251, 'image/normal/251.png', 'image/shiny/251.png')
       ON CONFLICT (PokeId) DO NOTHING;
     `);
 

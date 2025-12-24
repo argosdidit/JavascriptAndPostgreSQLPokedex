@@ -266,10 +266,6 @@ async function insertPokedex() {
       (249, 'ルギア', 11, 10, 2, 2),
       (250, 'ホウオウ', 2, 10, 2, 2),
       (251, 'セレビィ', 11, 4, 2, 2)
-
-
-
-
       ON CONFLICT (PokeId) DO NOTHING;
     `);
 

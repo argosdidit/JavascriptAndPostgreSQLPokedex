@@ -20,7 +20,7 @@ async function runSQL() {
       CREATE VIEW viewpokedex AS
       SELECT
         Pokedex.PokeId,
-        Pokedex.PokeName,
+        Pokedex.Name,
         Type1.Type AS Type1,
         Type2.Type AS Type2,
         Region.Region AS Region,
@@ -28,7 +28,7 @@ async function runSQL() {
         Image.PathNormal AS PathNormal,
         Image.PathShiny AS PathShiny
       FROM
-        TblDex AS Pokedex
+        TblPokedex AS Pokedex
       LEFT OUTER JOIN TblType AS Type1
         ON Pokedex.Type1Id = Type1.TypeId
       LEFT OUTER JOIN TblType AS Type2
