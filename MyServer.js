@@ -133,3 +133,4 @@ app.listen(port, () => {
 });
 //http://localhost:3001/api/poke?pokeid=5
 //http://localhost:3001/MyPokedex.html
+//Git, Rendery用に変更
