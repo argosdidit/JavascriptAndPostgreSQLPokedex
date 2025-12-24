@@ -16,9 +16,13 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
 // PostgreSQL 接続設定(Render用に変更)
+const { Pool } = require('pg');
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 
