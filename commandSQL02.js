@@ -13,7 +13,7 @@ async function insertPokedex() {
     console.log("DB接続成功");
 
     await client.query(`
-      INSERT INTO TblPokedex(PokeId, Name, Type1Id, Type2Id, RegionId, GenId)
+      INSERT INTO tblpokedex(pokeid, name, type1id, type2id, regionid, genid)
       VALUES
       (1, 'フシギダネ', 4, 8, 1, 1),
       (2, 'フシギソウ', 4, 8, 1, 1),
@@ -266,10 +266,10 @@ async function insertPokedex() {
       (249, 'ルギア', 11, 10, 2, 2),
       (250, 'ホウオウ', 2, 10, 2, 2),
       (251, 'セレビィ', 11, 4, 2, 2)
-      ON CONFLICT (PokeId) DO NOTHING;
+      ON CONFLICT (pokeid) DO NOTHING;
     `);
 
-    console.log("TblPokedex へのデータ挿入が完了しました！");
+    console.log("tblpokedex へのデータ挿入が完了しました！");
   } catch (err) {
     console.error("SQL実行エラー:", err);
   } finally {

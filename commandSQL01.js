@@ -12,18 +12,18 @@ async function runSQL() {
     await client.connect();
     console.log("DB接続成功");
 
-    // --- TblType ---
+    // --- tblType ---
     await client.query(`
-      CREATE TABLE IF NOT EXISTS TblType(
-        TypeId INTEGER NOT NULL,
-        Type VARCHAR(10) NOT NULL,
-        PathType VARCHAR(50) NOT NULL,
-        PRIMARY KEY (TypeId)
+      CREATE TABLE IF NOT EXISTS tbltype(
+        typeid INTEGER NOT NULL,
+        type VARCHAR(10) NOT NULL,
+        pathtype VARCHAR(50) NOT NULL,
+        PRIMARY KEY (typeid)
       );
     `);
 
     await client.query(`
-      INSERT INTO TblType(TypeId, Type, PathType)
+      INSERT INTO tbltype(typeid, type, pathtype)
       VALUES
       (1, 'ノーマル', 'image/type/01.png'),
       (2, 'ほのお', 'image/type/02.png'),
@@ -43,20 +43,20 @@ async function runSQL() {
       (16, 'あく', 'image/type/16.png'),
       (17, 'はがね', 'image/type/17.png'),
       (18, 'フェアリー', 'image/type/18.png')
-      ON CONFLICT (TypeId) DO NOTHING;
+      ON CONFLICT (typeid) DO NOTHING;
     `);
 
-    // --- TblRegion ---
+    // --- tblRegion ---
     await client.query(`
-      CREATE TABLE IF NOT EXISTS TblRegion(
-        RegionId INTEGER NOT NULL,
-        Region VARCHAR(10) NOT NULL,
-        PRIMARY KEY (RegionId)
+      CREATE TABLE IF NOT EXISTS tblregion(
+        regionid INTEGER NOT NULL,
+        region VARCHAR(10) NOT NULL,
+        PRIMARY KEY (regionid)
       );
     `);
 
     await client.query(`
-      INSERT INTO TblRegion(RegionId, Region)
+      INSERT INTO tblregion(regionid, region)
       VALUES
       (1, 'カントー地方'),
       (2, 'ジョウト地方'),
@@ -68,20 +68,20 @@ async function runSQL() {
       (8, 'ガラル地方'),
       (9, 'ヒスイ地方'),
       (10, 'パルデア地方')
-      ON CONFLICT (RegionId) DO NOTHING;
+      ON CONFLICT (regionid) DO NOTHING;
     `);
 
-    // --- TblGen ---
+    // --- tblGen ---
     await client.query(`
-      CREATE TABLE IF NOT EXISTS TblGen(
-        GenId INTEGER NOT NULL,
-        Gen VARCHAR(10) NOT NULL,
-        PRIMARY KEY (GenId)
+      CREATE TABLE IF NOT EXISTS tblgen(
+        genid INTEGER NOT NULL,
+        gen VARCHAR(10) NOT NULL,
+        PRIMARY KEY (genid)
       );
     `);
 
     await client.query(`
-      INSERT INTO TblGen(GenId, Gen)
+      INSERT INTO tblgen(genid, gen)
       VALUES
       (1, '第1世代'),
       (2, '第2世代'),
@@ -93,23 +93,23 @@ async function runSQL() {
       (8, '第8世代'),
       (9, '第9世代'),
       (10, '第10世代')
-      ON CONFLICT (GenId) DO NOTHING;
+      ON CONFLICT (genid) DO NOTHING;
     `);
 
-    // --- TblPokedex ---
+    // --- tblPokedex ---
     await client.query(`
-      CREATE TABLE IF NOT EXISTS TblPokedex(
-        PokeId INTEGER NOT NULL,
-        Name VARCHAR(10) NOT NULL,
-        Type1Id INTEGER,
-        Type2Id INTEGER,
-        RegionId INTEGER,
-        GenId INTEGER,
-        PRIMARY KEY (PokeId),
-        FOREIGN KEY (Type1Id) REFERENCES TblType(TypeId),
-        FOREIGN KEY (Type2Id) REFERENCES TblType(TypeId),
-        FOREIGN KEY (RegionId) REFERENCES TblRegion(RegionId),
-        FOREIGN KEY (GenId) REFERENCES TblGen(GenId)
+      CREATE TABLE IF NOT EXISTS tblpokedex(
+        pokeid INTEGER NOT NULL,
+        name VARCHAR(20) NOT NULL,
+        type1id INTEGER,
+        type2id INTEGER,
+        regionid INTEGER,
+        genid INTEGER,
+        PRIMARY KEY (pokeid),
+        FOREIGN KEY (type1id) REFERENCES tbltype(typeid),
+        FOREIGN KEY (type2id) REFERENCES tbltype(typeid),
+        FOREIGN KEY (regionid) REFERENCES tblregion(regionid),
+        FOREIGN KEY (genid) REFERENCES tblgen(genid)
       );
     `);
 

@@ -19,27 +19,27 @@ async function runSQL() {
     await client.query(`
       CREATE VIEW viewpokedex AS
       SELECT
-        Pokedex.PokeId,
-        Pokedex.Name,
-        Type1.Type AS Type1,
-        Type2.Type AS Type2,
-        Region.Region AS Region,
-        Gen.Gen AS Gen,
-        Image.PathNormal AS PathNormal,
-        Image.PathShiny AS PathShiny
+        pokedex.pokeid,
+        pokedex.name,
+        type1.type AS type1,
+        type2.type AS type2,
+        region.region AS region,
+        gen.gen AS gen,
+        image.pathnormal AS pathnormal,
+        image.pathshiny AS pathshiny
       FROM
-        TblPokedex AS Pokedex
-      LEFT OUTER JOIN TblType AS Type1
-        ON Pokedex.Type1Id = Type1.TypeId
-      LEFT OUTER JOIN TblType AS Type2
-        ON Pokedex.Type2Id = Type2.TypeId
-      INNER JOIN TblRegion AS Region
-        ON Pokedex.RegionId = Region.RegionId
-      INNER JOIN TblGen AS Gen
-        ON Pokedex.GenId = Gen.GenId
-      INNER JOIN TblImage AS Image
-        ON Pokedex.PokeId = Image.PokeId
-      ORDER BY Pokedex.PokeId;
+        tblpokedex AS pokedex
+      LEFT OUTER JOIN tbltype AS type1
+        ON pokedex.type1id = type1.typeid
+      LEFT OUTER JOIN tbltype AS type2
+        ON pokedex.type2id = type2.typeid
+      INNER JOIN tblregion AS region
+        ON pokedex.regionid = region.regionid
+      INNER JOIN tblgen AS gen
+        ON pokedex.genid = gen.genid
+      INNER JOIN tblimage AS image
+        ON pokedex.pokeid = image.pokeid
+      ORDER BY pokedex.pokeid;
     `);
 
     console.log("ビュー viewpokedex の作成が完了しました！");

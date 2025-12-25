@@ -16,19 +16,19 @@ async function dropTables() {
     await client.query(`DROP VIEW IF EXISTS viewpokedex;`);
     console.log("viewpokedex 削除完了");
 
-    await client.query(`DROP TABLE IF EXISTS TblImage;`);
+    await client.query(`DROP TABLE IF EXISTS tblimage;`);
     console.log("TblImage 削除完了");
 
-    await client.query(`DROP TABLE IF EXISTS TblPokedex;`);
+    await client.query(`DROP TABLE IF EXISTS tblpokedex;`);
     console.log("TblPokedex 削除完了");
 
-    await client.query(`DROP TABLE IF EXISTS TblType;`);
+    await client.query(`DROP TABLE IF EXISTS tbltype;`);
     console.log("TblType 削除完了");
 
-    await client.query(`DROP TABLE IF EXISTS TblRegion;`);
+    await client.query(`DROP TABLE IF EXISTS tblregion;`);
     console.log("TblRegion 削除完了");
 
-    await client.query(`DROP TABLE IF EXISTS TblGen;`);
+    await client.query(`DROP TABLE IF EXISTS Tblgen;`);
     console.log("TblGen 削除完了");
 
     console.log("すべてのテーブル・ビュー削除が完了しました！");

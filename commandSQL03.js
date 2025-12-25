@@ -14,16 +14,16 @@ async function runSQL() {
 
     // --- TblImage ---
     await client.query(`
-      CREATE TABLE IF NOT EXISTS TblImage(
-        PokeId INTEGER NOT NULL,
-        PathNormal VARCHAR(50),
-        PathShiny VARCHAR(50),
-        PRIMARY KEY (PokeId)
+      CREATE TABLE IF NOT EXISTS tblimage(
+        pokeid INTEGER NOT NULL,
+        pathnormal VARCHAR(50),
+        pathshiny VARCHAR(50),
+        PRIMARY KEY (pokeid)
       );
     `);
 
     await client.query(`
-      INSERT INTO TblImage(PokeId, PathNormal, PathShiny)
+      INSERT INTO tblimage(pokeid, pathnormal, pathshiny)
       VALUES
       (1, 'image/normal/001.png', 'image/shiny/001.png'),
       (2, 'image/normal/002.png', 'image/shiny/002.png'),
@@ -276,10 +276,10 @@ async function runSQL() {
       (249, 'image/normal/249.png', 'image/shiny/249.png'),
       (250, 'image/normal/250.png', 'image/shiny/250.png'),
       (251, 'image/normal/251.png', 'image/shiny/251.png')
-      ON CONFLICT (PokeId) DO NOTHING;
+      ON CONFLICT (pokeid) DO NOTHING;
     `);
 
-    console.log("TblImage の作成 & 初期データ挿入が完了しました！");
+    console.log("tblimage の作成 & 初期データ挿入が完了しました！");
   } catch (err) {
     console.error("SQL実行エラー:", err);
   } finally {
