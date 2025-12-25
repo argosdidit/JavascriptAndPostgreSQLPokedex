@@ -69,6 +69,14 @@ const PokeProject = (() => {
       active = true;
       pokeTargetNo = 1;
       whichImage = imageNormal;
+
+      //URLに番号があれば(検索画面から呼び出された場合)
+      const params = new URLSearchParams(window.location.search);
+      const getNo = params.get("No");
+
+      if(getNo !== undefined)
+        pokeTargetNo = Number(getNo);
+
       return this;
     },
     makeFieldPageTitle(){

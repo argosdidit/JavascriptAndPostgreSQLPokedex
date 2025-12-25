@@ -1,10 +1,6 @@
 const PokeSearch = (() => {
   'use strict';
   let
-  area_greeting,
-  html_greeting,
-  area_contents,
-  html_contents,
   func,
   flag,
   active;
@@ -155,6 +151,11 @@ const PokeSearch = (() => {
       return this;
     }
   };
+
+  //検索ロジック※そう間違えたら通らない
+  document.getElementById("BtnSearch").addEventListener("click", () => {
+    func.searchPoke();
+  });
 
   active = () => {
     func
