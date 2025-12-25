@@ -5,24 +5,21 @@ const { Pool } = require("pg");
 const path = require("path");
 
 const app = express();
-
-//(Render用に変更)
-const port = process.env.PORT || 3001;
-
+const port = 3001;
 
 app.use(cors());
 app.use(express.json());
 // 静的ファイル公開
 app.use(express.static(path.join(__dirname)));
 
-// PostgreSQL 接続設定(Render用に変更)
+// PostgreSQL 接続設定
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  host: "127.0.0.1",
+  user: "postgres",
+  password: "postgres",
+  database: "pokedb",
+  port: 5432,
 });
-
 
 // 接続確認（任意だが強く推奨）
 pool.connect()
@@ -135,6 +132,4 @@ app.listen(port, () => {
 });
 //http://localhost:3001/api/poke?pokeid=5
 //http://localhost:3001/MyPokedex.html
-//Git, Rendery用に変更
-
 //c:\Users\takeshita\Desktop\JavaScriptの繋げ方.txt
