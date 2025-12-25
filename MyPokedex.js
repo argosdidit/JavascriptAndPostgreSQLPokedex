@@ -74,7 +74,7 @@ const PokeProject = (() => {
       const params = new URLSearchParams(window.location.search);
       const getNo = params.get("No");
 
-      if(getNo !== undefined)
+      if(getNo !== null)
         pokeTargetNo = Number(getNo);
 
       return this;
