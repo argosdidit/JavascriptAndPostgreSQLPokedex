@@ -1,5 +1,8 @@
 // commandSQL04.js
 import pkg from 'pg';
+import dotenv from "dotenv";
+dotenv.config();
+
 const { Client } = pkg;
 
 const client = new Client({

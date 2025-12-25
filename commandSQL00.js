@@ -1,5 +1,8 @@
 // commandSQL00.js
 import pkg from 'pg';
+import dotenv from "dotenv";
+dotenv.config();
+
 const { Client } = pkg;
 
 const client = new Client({
@@ -17,19 +20,19 @@ async function dropTables() {
     console.log("viewpokedex 削除完了");
 
     await client.query(`DROP TABLE IF EXISTS tblimage;`);
-    console.log("TblImage 削除完了");
+    console.log("tblimage 削除完了");
 
     await client.query(`DROP TABLE IF EXISTS tblpokedex;`);
-    console.log("TblPokedex 削除完了");
+    console.log("tblpokedex 削除完了");
 
     await client.query(`DROP TABLE IF EXISTS tbltype;`);
-    console.log("TblType 削除完了");
+    console.log("tbltype 削除完了");
 
     await client.query(`DROP TABLE IF EXISTS tblregion;`);
-    console.log("TblRegion 削除完了");
+    console.log("tblregion 削除完了");
 
-    await client.query(`DROP TABLE IF EXISTS Tblgen;`);
-    console.log("TblGen 削除完了");
+    await client.query(`DROP TABLE IF EXISTS tblgen;`);
+    console.log("tblgen 削除完了");
 
     console.log("すべてのテーブル・ビュー削除が完了しました！");
   } catch (err) {
