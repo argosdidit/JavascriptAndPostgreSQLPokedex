@@ -27,6 +27,7 @@ const PokeProject = (() => {
   areaPokeType,
   areaPokeInfo,
   areaControlButtons,
+  areaSearchButton,
   areaDisplayPokeList,
 
   //HTML関連(挿入)
@@ -36,6 +37,7 @@ const PokeProject = (() => {
   htmlPokeType,
   htmlPokeInfo,
   htmlControlButtons,
+  htmlSearchButton,
 
   //js上で必要となり得る要素
   func,
@@ -59,6 +61,7 @@ const PokeProject = (() => {
     fieldPokeInfo: `field-selected-poke-info`,
     fieldControlButtons: `field-control-buttons`,
     fieldDisplayPokeList: `field-display-poke-list`,
+    fieldSearchButton: `field-search-button`,
   };
   func = {
     init: function(){
@@ -104,6 +107,26 @@ const PokeProject = (() => {
         let BtnSwitchImage = document.getElementById('BtnSwitchImage');
         if(BtnSwitchImage)
           BtnSwitchImage.addEventListener('click', func.switchImage);
+      }
+      return this;
+    },
+    makeFieldSearchButton(){
+      if(flag){
+        areaSearchButton = document.querySelector(`[${conf.fieldSearchButton}]`);
+        htmlSearchButton =
+        `<button id="BtnSearch">検索</button>`;
+        //MySearchdex.htmlへリンクさせたい
+        areaSearchButton.insertAdjacentHTML('beforeend', htmlSearchButton);
+
+        let BtnSearch = document.getElementById(`BtnSearch`);
+        if(BtnSearch)
+          BtnSearch.addEventListener('click', func.linkSearch);
+      }
+      return this;
+    },
+    linkSearch(){
+      if(flag){
+        window.location.href = "MySearchdex.html";
       }
       return this;
     },
@@ -358,7 +381,8 @@ const PokeProject = (() => {
     func
       .init()
       .makeFieldPageTitle()
-      .makeFieldControlButtons();
+      .makeFieldControlButtons()
+      .makeFieldSearchButton();
 
       await func.getMinNo();
       await func.getMaxNo();
