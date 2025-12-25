@@ -51,5 +51,5 @@ const ThisProject = (() => {
 })();
 
 window.addEventListener('load', function(){
-  ThisProject.active();
+  ThisProject();
 });
