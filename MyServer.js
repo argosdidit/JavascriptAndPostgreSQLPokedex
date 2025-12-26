@@ -190,24 +190,24 @@ app.post("/api/poke/search", async (req, res) => {
       AND
       (
         type1 IN
-          (
+        (
           SELECT
           type
           FROM
           tbltype
           WHERE
           typeid = ANY($${params.length})
-          )
-          OR
+        )
+        OR
         type2 IN
-          (
+        (
           SELECT
           type
           FROM
           tbltype
           WHERE
           typeid = ANY($${params.length})
-          )
+        )
       )`;
     }
 
