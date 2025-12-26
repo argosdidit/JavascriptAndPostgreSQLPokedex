@@ -111,18 +111,20 @@ const App = {
   },
 
   makeLink() {
-  if (!this.flag) return this;
-  const viewMode = document.body.classList.contains('mobile-mode') ? 'mobile' : 'pc';
-  const pages = [
-    { type: 'puzzle', label: 'パズル関連' },
-  ];
-  const html = pages.map(p =>
-    `<p><a href="Link.html?type=${p.type}&mode=${viewMode}">${p.label}</a></p>`
+    if (!this.flag) return this;
+    const viewMode = document.body.classList.contains('mobile-mode') ? 'mobile' : 'pc';
+    const pages = [
+      { type: 'puzzle', label: 'パズル関連' },
+    ];
+    const html = pages.map(p =>
+    `
+    <p><a href="Link.html?type=${p.type}&mode=${viewMode}">${p.label}</a></p>
+    <p><a href="../MyPokedex.html target="blank">モンスターのページ</a></p>
+    `
   ).join('');
   document.querySelector('.linking').innerHTML = html;
   return this;
-}
-,
+},
 
   runAnimations() {
     const cont = document.querySelector('.container');
