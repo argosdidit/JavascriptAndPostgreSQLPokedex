@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>関連ページ</title>
+  <link rel="stylesheet" href="Link.css" />
+  <script defer src="Link.js"></script>
+</head>
+<body class="pc-mode">
+  <div class="link-container">
+    <h1 class="link-title"></h1>
+
+    <div class="content-wrapper">
+      <div class="image-viewer">
+        <button class="arrow left">&#9664;</button>
+        <img src="" alt="表示画像" class="main-image" />
+        <button class="arrow right">&#9654;</button>
+      </div>
+
+      <div class="video-section">
+        <h2>ルービックキューブ3×3の解法動画</h2>
+        <video
+          class="video-player"
+          src="puzzle/solving.mov"
+          controls
+          playsinline
+          preload="metadata"
+        ></video>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="back-button">戻る</button>
+    </div>
+  </div>
+</body>
+</html>

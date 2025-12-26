@@ -1,0 +1,263 @@
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 40px;
+}
+
+/* モードボタンの配置 */
+.mode_buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mode_buttons button {
+  padding: 8px 16px;
+  margin: 0 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 共通のコンテナ */
+.container {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* PC表示用 */
+body.pc-mode .container {
+  background: linear-gradient(to right,
+    rgba(255, 204, 204, 0.6),
+    rgba(255, 229, 204, 0.6),
+    rgba(255, 255, 204, 0.6),
+    rgba(204, 255, 204, 0.6),
+    rgba(204, 242, 255, 0.6),
+    rgba(204, 204, 255, 0.6),
+    rgba(242, 204, 255, 0.6)
+  );
+  max-width: none;
+  margin: 10px;
+  font-size: 20px;
+}
+
+/* スマホ表示用 */
+body.mobile-mode .container {
+  background: linear-gradient(to bottom,
+    rgba(255, 204, 204, 0.6),
+    rgba(255, 229, 204, 0.6),
+    rgba(255, 255, 204, 0.6),
+    rgba(204, 255, 204, 0.6),
+    rgba(204, 242, 255, 0.6),
+    rgba(204, 204, 255, 0.6),
+    rgba(242, 204, 255, 0.6)
+  );
+  max-width: 600px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  color: #000000;
+}
+
+p {
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.intro-img {
+  display: block;
+  margin: 20px auto;
+  width: 50%;
+  height: auto;
+}
+
+.linking {
+  display: flex;            /* 子要素を横並びに */
+  gap: 16px;                /* 要素間のスペース */
+  justify-content: center;  /* 必要に応じて中央寄せ */
+  align-items: center;      /* 縦方向の位置揃え */
+}
+
+/* ▼ 新要素 ▼ */
+.info-tabs {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* info-tabs共通ボタンスタイル */
+.info-tabs button {
+  margin: 15px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #888;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+  background-color: #f9f9f9; /* デフォルト色 */
+  color: #333; /* デフォルト文字色 */
+}
+
+/* ボタン個別色指定（虹色イメージ） */
+.info-tabs button[data-key="profile"] {
+  background-color: rgba(230, 0, 0, 0.3); /* 赤 */
+  color: black;
+  border-color: #b30000;
+}
+.info-tabs button[data-key="school"] {
+  background-color: rgba(255, 127, 0, 0.3); /* オレンジ */
+  color: black;
+  border-color: #cc6600;
+}
+.info-tabs button[data-key="like1"] {
+  background-color: rgba(255, 255, 0, 0.3); /* 黄 */
+  color: black;
+  border-color: #cccc00;
+}
+.info-tabs button[data-key="like2"] {
+  background-color: rgba(0, 176, 80, 0.3); /* 緑 */
+  color: black;
+  border-color: #007a33;
+}
+.info-tabs button[data-key="life"] {
+  background-color: rgba(0, 102, 204, 0.3); /* 青 */
+  color: black;
+  border-color: #004c99;
+}
+.info-tabs button[data-key="dream"] {
+  background-color: rgba(102, 0, 204, 0.3); /* 紫 */
+  color: black;
+  border-color: #4d0099;
+}
+
+/* ホバー時の色（明るく） */
+.info-tabs button[data-key="profile"]:hover {
+  background-color: #ff3333;
+  border-color: #cc0000;
+  color: #FFFFFF;
+}
+.info-tabs button[data-key="school"]:hover {
+  background-color: #ff9933;
+  border-color: #cc7a00;
+  color: #FFFFFF;
+}
+.info-tabs button[data-key="like1"]:hover {
+  background-color: #ffff66;
+  border-color: #cccc00;
+  color: #000;
+}
+.info-tabs button[data-key="like2"]:hover {
+  background-color: #33cc33;
+  border-color: #009933;
+  color: #FFFFFF;
+}
+.info-tabs button[data-key="life"]:hover {
+  background-color: #3399ff;
+  border-color: #0066cc;
+  color: #FFFFFF;
+}
+.info-tabs button[data-key="dream"]:hover {
+  background-color: #9933ff;
+  border-color: #6600cc;
+  color: #FFFFFF;
+}
+
+
+.info-display {
+  /* ブロック要素にして幅指定 */
+  display: block;
+  max-width: 600px;     /* 最大幅を固定 */
+  width: 85%;           /* 狭い画面なら85%幅 */
+  
+  /* 上マージンは20px、左右は自動で中央寄せ */
+  margin: 20px auto 0 auto;
+
+  /* テキスト左寄せ */
+  text-align: left;
+
+  /* 見た目 */
+  font-size: 18px;
+  min-height: 255px;
+  color: #333;
+  background-color: #eef;
+  border-radius: 6px;
+  padding: 15px 20px;
+  box-shadow: inset 1px 1px 5px #bbb;
+
+  user-select: none;
+}
+
+
+
+
+/*アニメーション用*/
+/* フェードインアニメーション */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* スライドイン左右フェードイン */
+@keyframes slideFadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in {
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  animation-duration: 1s;
+  opacity: 0; /* 初期は透明 */
+}
+
+.fade-in.visible {
+  opacity: 1;
+  animation-name: fadeIn;
+}
+
+.slide-fade-in-left {
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  animation-duration: 1s;
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.slide-fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+  animation-name: slideFadeInLeft;
+}
+
+/* 中央からフェードイン */
+@keyframes scaleFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-fade-in {
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  animation-duration: 1s;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.scale-fade-in.visible {
+  opacity: 1;
+  transform: scale(1);
+  animation-name: scaleFadeIn;
+}
