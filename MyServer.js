@@ -40,7 +40,10 @@ pool.connect()
 app.get("/api/poke/minNo", async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT Min(pokeid) AS min FROM viewpokedex
+      SELECT
+      Min(pokeid) AS min
+      FROM
+      viewpokedex
     `);
     res.json({ min: result.rows[0]?.min ?? 0 });
   } catch (err) {
@@ -53,7 +56,10 @@ app.get("/api/poke/minNo", async (req, res) => {
 app.get("/api/poke/maxNo", async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT Max(pokeid) AS max FROM viewpokedex
+      SELECT
+      Max(pokeid) AS max
+      FROM
+      viewpokedex
     `);
     res.json({ max: result.rows[0]?.max ?? 0 });
   } catch (err) {
@@ -66,7 +72,12 @@ app.get("/api/poke/maxNo", async (req, res) => {
 app.get("/api/poke/type", async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT typeid, type, pathtype FROM tbltype
+      SELECT
+      typeid,
+      type,
+      pathtype
+      FROM
+      tbltype
     `);
     res.json(result.rows);
   } catch (err) {
@@ -79,7 +90,11 @@ app.get("/api/poke/type", async (req, res) => {
 app.get("/api/poke/region", async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT regionid, region FROM tblregion
+      SELECT
+      regionid,
+      region
+      FROM
+      tblregion
     `);
     res.json(result.rows);
   } catch (err) {
@@ -92,7 +107,11 @@ app.get("/api/poke/region", async (req, res) => {
 app.get("/api/poke/gen", async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT genid, gen FROM tblgen
+      SELECT
+      genid,
+      gen
+      FROM
+      tblgen
     `);
     res.json(result.rows);
   } catch (err) {
@@ -107,9 +126,19 @@ app.get("/api/poke", async (req, res) => {
     const pokeId = req.query.pokeid ?? 1;
 
     const result = await pool.query(`
-      SELECT pokeid, name, type1, type2, region, gen, pathnormal, pathshiny
-      FROM viewpokedex
-      WHERE pokeid = $1
+      SELECT
+      pokeid,
+      name,
+      type1,
+      type2,
+      region,
+      gen,
+      pathnormal,
+      pathshiny
+      FROM
+      viewpokedex
+      WHERE
+      pokeid = $1
     `, [pokeId]);
 
     if (result.rows.length === 0) {
@@ -129,33 +158,87 @@ app.post("/api/poke/search", async (req, res) => {
     const { name, types, region, gen } = req.body;
 
     let sql = `
-      SELECT pokeid, name, type1, type2, region, gen, pathnormal, pathshiny
-      FROM viewpokedex
-      WHERE 1=1
+      SELECT
+      pokeid,
+      name,
+      type1,
+      type2,
+      region,
+      gen,
+      pathnormal,
+      pathshiny
+      FROM
+      viewpokedex
+      WHERE
+      1=1
     `;
     const params = [];
 
     if (name) {
       params.push(`%${name}%`);
-      sql += ` AND name ILIKE $${params.length}`;
+      sql +=
+      `
+      AND
+      name ILIKE $${params.length}
+      `;
     }
 
     if (types && types.length > 0) {
       params.push(types);
-      sql += ` AND (
-        type1 IN (SELECT type FROM tbltype WHERE typeid = ANY($${params.length}))
-        OR type2 IN (SELECT type FROM tbltype WHERE typeid = ANY($${params.length}))
+      sql +=
+      `
+      AND
+      (
+        type1 IN
+          (
+          SELECT
+          type
+          FROM
+          tbltype
+          WHERE
+          typeid = ANY($${params.length})
+          )
+          OR
+        type2 IN
+          (
+          SELECT
+          type
+          FROM
+          tbltype
+          WHERE
+          typeid = ANY($${params.length})
+          )
       )`;
     }
 
     if (region) {
       params.push(region);
-      sql += ` AND region = (SELECT region FROM tblregion WHERE regionid = $${params.length})`;
+      sql +=
+      `
+      AND
+      region = (
+        SELECT
+        region
+        FROM
+        tblregion
+        WHERE
+        regionid = $${params.length}
+      )`;
     }
 
     if (gen) {
       params.push(gen);
-      sql += ` AND gen = (SELECT gen FROM tblgen WHERE genid = $${params.length})`;
+      sql +=
+      `
+      AND
+        gen = (
+          SELECT
+          gen
+          FROM
+          tblgen
+          WHERE
+          genid = $${params.length}
+        )`;
     }
 
     sql += " ORDER BY pokeid";
@@ -172,9 +255,14 @@ app.post("/api/poke/search", async (req, res) => {
 app.get("/api/pokelist", async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT pokeid, pathnormal, pathshiny
-      FROM viewpokedex
-      ORDER BY pokeid
+      SELECT
+      pokeid,
+      pathnormal,
+      pathshiny
+      FROM
+      viewpokedex
+      ORDER BY
+      pokeid
     `);
     res.json(result.rows);
   } catch (err) {
