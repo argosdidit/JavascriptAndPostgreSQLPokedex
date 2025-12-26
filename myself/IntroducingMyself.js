@@ -117,7 +117,7 @@ const App = {
     { type: 'puzzle', label: 'パズル関連' },
   ];
   const html = pages.map(p =>
-    `<p><a href="link/link.html?type=${p.type}&mode=${viewMode}">${p.label}</a></p>`
+    `<p><a href="Link.html?type=${p.type}&mode=${viewMode}">${p.label}</a></p>`
   ).join('');
   document.querySelector('.linking').innerHTML = html;
   return this;

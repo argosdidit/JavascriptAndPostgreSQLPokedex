@@ -72,7 +72,7 @@ const App = {
   setBackButton() {
     const btn = document.querySelector('.back-button');
     btn.addEventListener('click', () => {
-      location.href = `IntrducingMySelf.html?mode=${this.viewMode}`;
+      location.href = `IntroducingMySelf.html?mode=${this.viewMode}`;
     });
     return this;
   },
