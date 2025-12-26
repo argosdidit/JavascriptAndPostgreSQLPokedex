@@ -119,7 +119,7 @@ const App = {
     const html = pages.map(p =>
     `
     <p><a href="Link.html?type=${p.type}&mode=${viewMode}">${p.label}</a></p>
-    <p><a href="../MyPokedex.html target="blank">モンスターのページ</a></p>
+    <p><a href="../MyPokedex.html" target="blank">モンスターのページ</a></p>
     `
   ).join('');
   document.querySelector('.linking').innerHTML = html;
